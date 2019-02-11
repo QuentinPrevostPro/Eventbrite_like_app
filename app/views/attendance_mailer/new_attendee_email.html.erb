@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @admin.first_name %>, </h1>
+    <p>
+      Une nouvelle personne vient de s'inscrire à votre événement: <%= @attendance.attendee.first_name %>.
+    </p>
+    <p>
+      Cordialement,
+    </p>
+  </body>
+</html>

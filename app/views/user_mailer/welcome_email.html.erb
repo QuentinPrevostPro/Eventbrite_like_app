@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @user.first_name %>, </h1>
+    <p>
+      Votre inscription est confirmée. Vous pourrez vous identifier sur le site avec l'adresse suivante: <%= @user.email %>.
+    </p>
+    <p>
+      Pour accéder à votre espace client, connectez-vous via : <%= @url %>.
+    </p>
+    <p>
+      Cordialement,
+    </p>
+  </body>
+</html>
