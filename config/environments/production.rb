@@ -91,4 +91,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  # Ligne à mettre à jour au moment de mettre l'application en production
+  #config.action_mailer.default_url_options = { :host => 'YOURAPPNAME.herokuapp.com' }
 end

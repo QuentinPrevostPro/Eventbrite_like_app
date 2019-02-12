@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Bonjour, Quentin </h1>
+    <h3>Voici les événements organisés près de chez vous.</h3>
+    <%= link_to "Créer un événement", new_event_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="word-wrap: break-word;" >
+  <% Event.all.each.with_index do |event| %>
+    <div class="col-md-4">
+      <h2 class="card-title"> Titre: <%= event.title %></h2>
+      <p> <%= event.description %> </p>
+      <p> <a class="btn btn-secondary" href="#" role="button"> Voir les détails »</a> </p>
+    </div>
+  <% end %> 
+<hr>
+</div>
+  
+  <footer class="container">
+    <p>© Quentin Prevost - 2019</p>
+  </footer>
+</div>
