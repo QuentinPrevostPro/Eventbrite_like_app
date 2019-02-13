@@ -14,13 +14,13 @@
 #  join.save
 
 #Create 5 users
-5.times do
-User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Lorem.word, descrption: Faker::Lorem.word)
-end
+#5.times do
+#User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Lorem.word, descrption: Faker::Lorem.word)
+#end
 
 #Create 10 events
 10.times do
-  event = Event.new(start_date: DateTime.now + 1, duration: 10, title: Faker::Lorem.characters(rand(5..140)), description: Faker::Lorem.characters(rand(20..1000)), price: rand(1..1000), location: Faker::Address.city)
+  event = Event.new(start_date: DateTime.now + rand(1..100), duration: 10, title: Faker::Lorem.sentence(5), description: Faker::Lorem.sentence(20), price: rand(1..1000), location: Faker::Address.city)
   admin = User.all.sample
   event.admin = admin
   event.save

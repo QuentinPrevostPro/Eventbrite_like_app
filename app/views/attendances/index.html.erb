@@ -1,0 +1,9 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Liste des participants </h1>
+    <hr>
+    <% Attendance.where(event_id: params[:event_id]).each do |attendee| %>
+    <h1 class="display-5"> <%= attendee.attendee.first_name %> <%= attendee.attendee.last_name %></h1>
+    <% end %>
+  </div>
+</div>
