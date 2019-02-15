@@ -15,11 +15,13 @@
 <div class="container">
   <div class="row" style="word-wrap: break-word;" >
   <% Event.all.each.with_index do |event| %>
+    <% if event.validated %>
     <div class="col-md-4">
       <h2 class="card-title"> Titre: <%= event.title %></h2>
       <p> <%= event.description %> </p>
       <%= link_to "Voir les détails", event_path(event.id), class: "btn btn-secondary" %>
     </div>
+    <% end %> 
   <% end %> 
 <hr>
 </div>

@@ -2,15 +2,18 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <br><br><br>
-      <%= form_tag events_path, html: { class: "form-signin mt-3" }, method: "post" do %>
+      <%= form_tag events_path, html: { class: "form-signin mt-3" }, method: "post", multipart: true do %>
         <h1 class="h3 mb-3 font-weight-normal text-center">Créer un événement</h1>
         <%= hidden_field_tag 'admin_id', current_user.id %>
+        <%= hidden_field_tag 'validated', nil %>
         <p>Titre: </p>
         <%= text_field_tag 'title', "", class: 'form-control' %>
         <p>Description: </p>
-        <%= text_field_tag 'description', "", class: 'form-control' %>
+        <%= text_area_tag 'description', "", class: 'form-control' %>
+        <p>Illustration: </p>
+        <%= file_field_tag :image %>
         <p>Date: </p>
-        <%= text_field_tag 'start_date', "", class: 'form-control' %>
+        <%= text_field_tag 'start_date', "", class: 'form-control' %>        
         <p>Durée: </p>
         <%= text_field_tag 'duration', "", class: 'form-control' %>
         <p>Ville: </p>

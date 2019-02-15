@@ -2,6 +2,11 @@
   <div class="container">
     <h1 class="display-4">Informations de l'événement </h1>
     <hr>
+    <%if event_by_id(params[:id]).image.attached?%>
+      <%= image_tag event_by_id(params[:id]).image, alt: 'image' %>
+    <%else%>
+      <p>=== Il n'y a pas encore d'image lié à cet événement ===</p>
+    <%end%>
     <h3>Titre: <%= event_by_id(params[:id]).title %> </h3>
     <h3>Description: <%= event_by_id(params[:id]).description %> </h3>
     <h3>Organisateur: <%= user_by_id(event_by_id(params[:id]).admin_id).first_name %> </h3>
@@ -39,6 +44,7 @@
     <% if user_signed_in? && event_by_id(params[:id]).admin_id == current_user.id %>
       <h3> Vous êtes l'organisateur de cet événement </h3>
       <%= link_to "Voir les participants", event_attendances_path(event_by_id(params[:id]).id), class: "btn btn-primary" %>
+      <%= link_to "Supprimer", event_path(event_by_id(params[:id]).id), class: "btn btn-danger", method: "DELETE" %>
     <% end %>
   </div>
 </div>

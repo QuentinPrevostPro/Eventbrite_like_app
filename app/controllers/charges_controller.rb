@@ -1,5 +1,5 @@
 class ChargesController < ApplicationController
-  include ChargesHelper
+  include EventsHelper
   
   def create
     

@@ -1,6 +1,7 @@
 require 'date'
 class Event < ApplicationRecord
   belongs_to :admin, class_name: "User"
+  has_one_attached :image
   has_many :attendances
 
   validates :start_date, 

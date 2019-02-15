@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <div class="container">
+    <% if user_signed_in? %>
+      <h1 class="display-3">Bonjour, <%= current_user.first_name %></h1>
+      <h1 class="display-5">Page administrateur</h1>
+    <% else %>
+        <h1 class="display-3">Bonjour, </h1>
+    <% end %>
+    <h3>Voici les événements qui attendent votre validation.</h3>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="word-wrap: break-word;" >
+  <% Event.all.each.with_index do |event| %>
+    <% if event.validated == nil%>
+    <div class="col-md-4">
+      <h2 class="card-title"> Titre: <%= event.title %></h2>
+      <p> <%= event.description %> </p>
+      <%= link_to "Voir les détails", event_path(event.id), class: "btn btn-secondary" %>
+      <hr>
+      <div style="display: flex;">
+        <%= form_tag admin_event_path(event.id), method: "PUT" do %>
+          <%= hidden_field_tag 'validation', true %>
+          <%= submit_tag "Valider",  class: "btn btn-sm btn-success", style: "margin-right :5px;" %>
+        <% end %>
+        <%= form_tag admin_event_path(event.id), method: "PUT" do %>
+          <%= hidden_field_tag 'validation', false %>
+          <%= submit_tag "Refuser",  class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+    <% end %> 
+  <% end %> 
+<hr>
+</div>
+</div>
