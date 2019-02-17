@@ -31,10 +31,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe "#password" do
-      it {expect(@user).to validate_presence_of(:password)}
-    end
-
   end
 
   context "Association" do

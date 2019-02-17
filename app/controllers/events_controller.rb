@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
   def index
   end
+  def show
+  end
   def new
   end
   def create
@@ -16,6 +18,15 @@ class EventsController < ApplicationController
     end
   end
   def edit
+    @event = event_by_id(params[:id])
+  end
+  def update
+    @event = event_by_id(params[:id])
+    if @event.update(start_date: params[:start_date], title: params[:title], duration: params[:duration], description: params[:description], price: params[:price], location: params[:location])
+      redirect_to event_path(params[:id])
+    else
+      redirect_to events_path
+    end
   end
   def destroy
     @event = event_by_id(params[:id])
@@ -23,3 +34,4 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 end
+

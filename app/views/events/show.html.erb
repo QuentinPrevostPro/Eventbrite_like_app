@@ -19,7 +19,7 @@
 
     <!-- Stripe payment -->    
     <% if user_signed_in? && event_by_id(params[:id]).admin_id != current_user.id && current_user_attend?(event_by_id(params[:id]).id, current_user.id) == false %>
-      <%= form_tag event_charges_path(event_by_id(params[:id]).id) do %>
+      <%= form_tag event_attendances_path(event_by_id(params[:id]).id) do %>
         <script 
           src="https://checkout.stripe.com/checkout.js" 
           class="stripe-button"
@@ -44,6 +44,7 @@
     <% if user_signed_in? && event_by_id(params[:id]).admin_id == current_user.id %>
       <h3> Vous êtes l'organisateur de cet événement </h3>
       <%= link_to "Voir les participants", event_attendances_path(event_by_id(params[:id]).id), class: "btn btn-primary" %>
+      <%= link_to "Modifier", edit_event_path(event_by_id(params[:id]).id), class: "btn btn-secondary" %>
       <%= link_to "Supprimer", event_path(event_by_id(params[:id]).id), class: "btn btn-danger", method: "DELETE" %>
     <% end %>
   </div>

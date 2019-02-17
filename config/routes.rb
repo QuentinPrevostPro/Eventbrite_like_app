@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   root 'events#index'  
   resources :events do
     resources :images
-    resources :charges
-    resources :attendances
+    resources :attendances, only: [:index, :create]
   end
 namespace :admin do
   resources :events

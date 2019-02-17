@@ -13,13 +13,13 @@
         <p>Illustration: </p>
         <%= file_field_tag :image %>
         <p>Date: </p>
-        <%= text_field_tag 'start_date', "", class: 'form-control' %>        
-        <p>Durée: </p>
-        <%= text_field_tag 'duration', "", class: 'form-control' %>
+        <%= datetime_local_field_tag 'start_date', "", class: 'form-control' %>        
+        <p>Durée (en minute par palier de 5 minutes): </p>
+        <%= number_field_tag 'duration', "", class: 'form-control', in: 0..1440, step: 5 %>
         <p>Ville: </p>
         <%= text_field_tag 'location', "", class: 'form-control' %>
-        <p>Prix: </p>
-        <%= text_field_tag 'price', "", class: 'form-control' %>
+        <p>Prix (entre 1 et 1000€): </p>
+        <%= number_field_tag 'price', "", class: 'form-control', in: 1..1000, step: 1 %>
         <br>
         <%= submit_tag "Envoyer",  class: "btn btn-lg btn-primary btn-block" %>
       <% end %>
