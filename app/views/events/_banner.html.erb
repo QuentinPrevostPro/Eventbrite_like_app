@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <div class="container">
+    <% if user_signed_in? %>
+      <h1 class="display-3">Bonjour, <%= current_user.first_name %> </h1>
+    <% else %>
+        <h1 class="display-3">Bonjour, </h1>
+    <% end %>
+    <h3>Voici les événements organisés près de chez vous.</h3>
+    <% if user_signed_in? %>
+    <%= link_to "Créer un événement", new_event_path, class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
+      <%= form_tag @event == nil ? events_path : event_path(@event.id), html: { class: "form-signin mt-3" }, method: "put", multipart: true do %>
+        <h1 class="h3 mb-3 font-weight-normal text-center"><%= @event == nil ? "Créer" : "Modifier" %> l'événement <%= @event == nil ? "": @event.title %> </h1>
+        <p>Titre: </p>
+        <%= text_field_tag 'title', @event == nil ? "" : @event.title, class: 'form-control' %>
+        <p>Description: </p>
+        <%= text_area_tag 'description', @event == nil ? "" : @event.description, class: 'form-control' %>
+        <p>Illustration: </p>
+        <%= file_field_tag :image %>
+        <p>Date: </p>
+        <%= datetime_local_field_tag 'start_date', @event == nil ? "" : @event.start_date, class: 'form-control' %>        
+        <p>Durée (en minute par palier de 5 minutes): </p>
+        <%= number_field_tag 'duration', @event == nil ? "" : @event.duration, class: 'form-control', in: 0..1440, step: 5 %>
+        <p>Ville: </p>
+        <%= text_field_tag 'location', @event == nil ? "" : @event.location, class: 'form-control' %>
+        <p>Prix (entre 1 et 1000€): </p>
+        <%= number_field_tag 'price', @event == nil ? "" : @event.price, class: 'form-control', in: 1..1000, step: 1 %>
+        <br>
+        <%= submit_tag "Envoyer",  class: "btn btn-lg btn-primary btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

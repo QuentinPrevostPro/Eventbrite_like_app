@@ -7,37 +7,9 @@
     <%else%>
       <p>=== Il n'y a pas encore d'image lié à cet événement ===</p>
     <%end%>
-    <h3>Titre: <%= event_by_id(params[:id]).title %> </h3>
-    <h3>Description: <%= event_by_id(params[:id]).description %> </h3>
-    <h3>Organisateur: <%= user_by_id(event_by_id(params[:id]).admin_id).first_name %> </h3>
-    <h3>Date: <%= event_by_id(params[:id]).start_date %> </h3>
-    <h3>Nombre de participants: <%= Attendance.where(event_id: params[:id]).count %> </h3>
-    <h3>Durée: <%= event_by_id(params[:id]).duration %> min </h3>
-    <h3>Ville: <%= event_by_id(params[:id]).location %> </h3>
-    <h3>Prix: <%= event_by_id(params[:id]).price %> € </h3>
+    <%= render 'detail'%>
     <br>
-
-    <!-- Stripe payment -->    
-    <% if user_signed_in? && event_by_id(params[:id]).admin_id != current_user.id && current_user_attend?(event_by_id(params[:id]).id, current_user.id) == false %>
-      <%= form_tag event_attendances_path(event_by_id(params[:id]).id) do %>
-        <script 
-          src="https://checkout.stripe.com/checkout.js" 
-          class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Participer à cet événement"
-          data-label="Rejoindre"
-          data-amount= "<%= (event_by_id(params[:id]).price).to_f*100 %>"
-          data-locale="auto"
-          data-email="<%= current_user.email %>"
-          data-currency="eur">
-        </script>
-        <!-- Hide default button -->
-        <script>
-          document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-        </script>
-        <%= submit_tag "Rejoindre",  class: "btn btn-primary" %>
-      <% end %>
-    <% end %>
+    <%= render 'stripe'%>
     <% if user_signed_in? && current_user_attend?(event_by_id(params[:id]).id, current_user.id) %>
       <h3> Vous êtes déjà inscrit à cet événement </h3>
     <% end %>
@@ -48,5 +20,4 @@
       <%= link_to "Supprimer", event_path(event_by_id(params[:id]).id), class: "btn btn-danger", method: "DELETE" %>
     <% end %>
   </div>
-</div>
 </div>

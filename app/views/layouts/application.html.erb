@@ -12,43 +12,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <span class="nav-item nav-link active"> <%= link_to "Eventbrite", events_path %> </span>
-          
-          <% if user_signed_in? %>
-            <div class="btn-group dropright" style="margin-right: 670px">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon profil</button>
-              <div class="dropdown-menu">
-                <span class="dropdown-item"> <%= link_to "Accéder à mon profil", user_path(current_user) %> </span>
-                <span class="dropdown-item"> <%= link_to "Se déconnecter", destroy_user_session_path, method: "DELETE" %> </span>
-              </div>
-            </div>
-            <% if current_user.is_admin %>
-              <%= link_to "Portail administrateur", admin_events_path, class: "btn btn-secondary" %>
-            <% end %>
-          <% else %>
-            <div class="btn-group dropright">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">S'inscrire / Se connecter</button>
-              <div class="dropdown-menu">
-                <span class="dropdown-item"> <%= link_to "S'inscrire", new_user_registration_path %> </span>
-                <span class="dropdown-item"> <%= link_to "Se connecter", new_user_session_path %> </span>   
-              </div>
-            </div>
-          <% end %>
-        </div>
-    </nav>
-    <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
-        <%= value %>
-      </div>
-    <% end %>
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/flash'%>
     <%= yield %>
-    <footer class="container">
-      <p>© Quentin Prevost - 2019</p>
-    </footer>
+    <%= render 'layouts/footer'%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.bundle.min.js" integrity="sha384-VoPFvGr9GxhDT3n8vqqZ46twP5lgex+raTCfICQy73NLhN7ZqSfCtfSn4mLA2EFA" crossorigin="anonymous"></script>

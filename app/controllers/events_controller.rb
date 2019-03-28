@@ -12,9 +12,11 @@ class EventsController < ApplicationController
     @event = Event.new(start_date: params[:start_date], title: params[:title], duration: params[:duration], admin_id: params[:admin_id], description: params[:description], price: params[:price], location: params[:location], validated: params[:validated])
     @event.image.attach(params[:image])
     if @event.save
+      flash[:success] = "Evènement enregistré avec succès"
       redirect_to events_path
     else
-      redirect_to events_path
+      flash.now[:error] = @event.errors.full_messages.to_sentence
+      render "new"
     end
   end
   def edit
@@ -23,9 +25,11 @@ class EventsController < ApplicationController
   def update
     @event = event_by_id(params[:id])
     if @event.update(start_date: params[:start_date], title: params[:title], duration: params[:duration], description: params[:description], price: params[:price], location: params[:location])
-      redirect_to event_path(params[:id])
+      flash[:success] = "Evènement modifié avec succès"
+      redirect_to events_path    
     else
-      redirect_to events_path
+      flash.now[:error] = @event.errors.full_messages.to_sentence
+      render "edit"
     end
   end
   def destroy

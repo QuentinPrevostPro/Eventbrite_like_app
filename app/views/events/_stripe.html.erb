@@ -1,0 +1,20 @@
+<% if user_signed_in? && event_by_id(params[:id]).admin_id != current_user.id && current_user_attend?(event_by_id(params[:id]).id, current_user.id) == false %>
+      <%= form_tag event_attendances_path(event_by_id(params[:id]).id) do %>
+        <script 
+          src="https://checkout.stripe.com/checkout.js" 
+          class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Participer à cet événement"
+          data-label="Rejoindre"
+          data-amount= "<%= (event_by_id(params[:id]).price).to_f*100 %>"
+          data-locale="auto"
+          data-email="<%= current_user.email %>"
+          data-currency="eur">
+        </script>
+        <!-- Hide default button -->
+        <script>
+          document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+        </script>
+        <%= submit_tag "Rejoindre",  class: "btn btn-primary" %>
+      <% end %>
+<% end %>

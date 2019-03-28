@@ -1,14 +1,1 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-4">Vos informations de profil </h1>
-    <hr>
-    <h3>Prénom: <%= current_user.first_name %> </h3>
-    <h3>Nom: <%= current_user.last_name %> </h3>
-    <h3>Email: <%= current_user.email %> </h3>
-    <h3>Description: <%= current_user.descrption %> </h3>
-    <h3>Date de création: <%= current_user.created_at %> </h3>
-    <br>
-    <%= link_to "Mettre à jour les informations", new_event_path, class: "btn btn-primary" %>
-  </div>
-</div>
-</div>
+<%= render 'detail'%>

@@ -1,0 +1,8 @@
+<h3>Titre: <%= event_by_id(params[:id]).title %> </h3>
+    <h3>Description: <%= event_by_id(params[:id]).description %> </h3>
+    <h3>Organisateur: <%= user_by_id(event_by_id(params[:id]).admin_id).first_name %> </h3>
+    <h3>Date: <%= event_by_id(params[:id]).start_date %> </h3>
+    <h3>Nombre de participants: <%= Attendance.where(event_id: params[:id]).count %> </h3>
+    <h3>Durée: <%= event_by_id(params[:id]).duration %> min </h3>
+    <h3>Ville: <%= event_by_id(params[:id]).location %> </h3>
+    <h3>Prix: <%= event_by_id(params[:id]).price %> € </h3>
